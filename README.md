@@ -43,7 +43,7 @@ The pcc for both haplotypes are summarized below:
 
 ### Usage and Options
 ```bash
-git clone 
+git clone https://github.com/KANGYUlab/pcctool.git
 cd pcctool
 python setup.py install
 ```
@@ -172,4 +172,5 @@ $$
 <center>Figure 1. high chainQ Mapping of GRCh38 Genome (from yaomat)</center>
 
 ![hg38linkyaopatpccConfidencemap](config/yaopat2hg38_pcc.svg)
+
 <center>Figure 2. high chainQ Mapping of GRCh38 Genome (from yaopat)</center>
