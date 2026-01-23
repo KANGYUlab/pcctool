@@ -10,41 +10,46 @@ def main(arglist=None):
     script_path = os.path.abspath(__file__)
     base_dir = os.path.dirname(os.path.abspath(__file__))
     args = get_args(arglist)
+    chrom = args.chr
     if args.pos:
         if args.parent=="mat":
             paf_file = f"{base_dir}/../data/yaomat2hg38v1.0.pcc"
+            args.chr = chrtrans.yaomatchromosome_dict_rev[chrom]
         elif args.parent=="pat":
             paf_file = f"{base_dir}/../data/yaopat2hg38v1.0.pcc"
+            args.chr = chrtrans.yaopatchromosome_dict_rev[chrom]
         if args.src == 'hg38' and args.dest == 'yao':
-            args.chr = chrtrans.hg38chromosome_dict_rev[args.chr]
+            args.chr = chrtrans.hg38chromosome_dict_rev[chrom]
             hg38toyaochainlift.hg38toyaochainlift(paf_file, args.chr, args.pos,args.parent)
         elif args.src == 'yao' and args.dest == 'hg38':
-            args.chr = chrtrans.yaomatchromosome_dict_rev[args.chr]
             yaotohg38chainlift.yaotohg38chainlift(paf_file, args.chr, args.pos,args.parent)
     elif args.Seg:
         if args.parent=="mat":
             paf_file = f"{base_dir}/../data/yaomat2hg38v1.0.pcc"
+            args.chr = chrtrans.yaomatchromosome_dict_rev[chrom]
         elif args.parent=="pat":
             paf_file = f"{base_dir}/../data/yaopat2hg38v1.0.pcc"
+            args.chr = chrtrans.yaopatchromosome_dict_rev[chrom]
         if args.src == 'hg38' and args.dest == 'yao':
-            args.chr = chrtrans.hg38chromosome_dict_rev[args.chr]
+            args.chr = chrtrans.hg38chromosome_dict_rev[chrom]
             hg38toyaochainlift.hg38toyaochainlift_locus(paf_file, args.chr, args.Seg,args.parent)
         elif args.src == 'yao' and args.dest == 'hg38':
-            args.chr = chrtrans.yaomatchromosome_dict_rev[args.chr]
             yaotohg38chainlift.yaotohg38chainlift_locus(paf_file, args.chr, args.Seg,args.parent)
     elif args.posfile:
         if args.parent=="mat":
             paf_file = f"{base_dir}/../data/yaomat2hg38v1.0.pcc"
+            args.chr = chrtrans.yaomatchromosome_dict_rev[chrom]
         elif args.parent=="pat":
             paf_file = f"{base_dir}/../data/yaopat2hg38v1.0.pcc"
+            args.chr = chrtrans.yaopatchromosome_dict_rev[chrom]
         if args.src == 'hg38' and args.dest == 'yao':
+            args.chr = chrtrans.hg38chromosome_dict_rev[chrom]
             with open(args.posfile, 'r') as f:
                 for line in f:
                     line = line.strip()
                     if line:
                         chr, pos = line.split()
                         pos = int(pos)
-                        args.chr = chrtrans.hg38chromosome_dict_rev[chr]
                         hg38toyaochainlift.hg38toyaochainlift(paf_file, args.chr, pos,args.parent)
         elif args.src == 'yao' and args.dest == 'hg38':
             with open(args.posfile, 'r') as f:
@@ -53,14 +58,16 @@ def main(arglist=None):
                     if line:
                         chr, pos = line.split()
                         pos = int(pos)
-                        args.chr = chrtrans.yaomatchromosome_dict_rev[chr]
                         yaotohg38chainlift.yaotohg38chainlift(paf_file, args.chr, pos,args.parent)
     elif args.Segfile:
         if args.parent=="mat":
             paf_file = f"{base_dir}/../data/yaomat2hg38v1.0.pcc"
+            args.chr = chrtrans.yaomatchromosome_dict_rev[chrom]
         elif args.parent=="pat":
             paf_file = f"{base_dir}/../data/yaopat2hg38v1.0.pcc"
+            args.chr = chrtrans.yaopatchromosome_dict_rev[chrom]
         if args.src == 'hg38' and args.dest == 'yao':
+            args.chr = chrtrans.hg38chromosome_dict_rev[chrom]
             with open(args.Segfile, 'r') as f:
                 for line in f:
                     line = line.strip()
@@ -68,7 +75,6 @@ def main(arglist=None):
                         chr, start, end = line.split()
                         start = int(start)
                         end = int(end)
-                        args.chr = chrtrans.hg38chromosome_dict_rev[chr]
                         hg38toyaochainlift.hg38toyaochainlift_locus(paf_file, args.chr, (start, end),args.parent)
         elif args.src == 'yao' and args.dest == 'hg38':
             with open(args.Segfile, 'r') as f:
@@ -78,7 +84,6 @@ def main(arglist=None):
                         chr, start, end = line.split()
                         start = int(start)
                         end = int(end)
-                        args.chr = chrtrans.yaomatchromosome_dict_rev[chr]
                         yaotohg38chainlift.yaotohg38chainlift_locus(paf_file, args.chr, (start, end),args.parent)
     
 
