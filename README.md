@@ -19,8 +19,8 @@
 
 
 # pcctool
+##### ***Warning:*** This is a ***0-based*** system.
 ### PCCfile Release 1.0
-
 ##### Data Path Declaration
 The high-confidence mapping files are located at:
 * **Maternal Haplotype:** data/yaomat2hg38v1.0.pcc
@@ -174,3 +174,4 @@ $$
 ![hg38linkyaopatpccConfidencemap](config/yaopat2hg38_pcc.svg)
 
 <center>Figure 2. high chainQ Mapping of GRCh38 Genome (from yaopat)</center>
+
